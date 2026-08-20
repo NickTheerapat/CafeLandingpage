@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2พฤษภา Camping Cafe | ปิ้งไป ชิลไป ในบรรยากาศแคมป์</title>
+    <meta name="description" content="คาเฟ่กลางธรรมชาติ ที่ผสมผสานความสนุกของการแคมป์ปิ้ง กับอาหารอร่อยและเครื่องดื่มชิลๆ">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+Thai:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2D5016',
+                        secondary: '#A8C686',
+                        accent: '#E07A3A',
+                        background: '#FDFAF5',
+                        surface: '#F0EBE1',
+                        'text-primary': '#3B2F20',
+                        'text-secondary': '#6B5B4B',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans Thai"', 'Inter', 'sans-serif'],
+                        heading: ['"Noto Sans Thai"', 'Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        'bounce-slow': 'bounce 3s infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans Thai', 'Inter', sans-serif;
+            background-color: #FDFAF5;
+            color: #3B2F20;
+        }
+        
+        h1, h2, h3, h4, h5, h6, .font-heading {
+            font-weight: 700;
+        }
+        
+        /* Fade in up animation classes */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hero image background */
+        .hero-bg {
+            background-image: linear-gradient(rgba(45, 80, 22, 0.4), rgba(45, 80, 22, 0.8)), url('hero.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 1. Navigation Bar -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-transparent text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center">
+                    <a href="#" class="flex items-center gap-2 group" aria-label="หน้าแรก">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-accent group-hover:scale-110 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M4 21V10l8-7 8 7v11M10 21V14h4v7" />
+                        </svg>
+                        <span class="font-heading text-xl md:text-2xl tracking-tight">2พฤษภา Camping Cafe</span>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#home" class="hover:text-secondary transition-colors font-medium">หน้าแรก</a>
+                    <a href="#features" class="hover:text-secondary transition-colors font-medium">จุดเด่น</a>
+                    <a href="#reviews" class="hover:text-secondary transition-colors font-medium">รีวิว</a>
+                    <a href="#contact" class="hover:text-secondary transition-colors font-medium">ติดต่อเรา</a>
+                    <a href="#contact" class="bg-accent hover:bg-orange-600 text-white px-6 py-2.5 rounded-full font-medium transition-colors shadow-md hover:shadow-lg">จองโต๊ะ</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-secondary focus:outline-none p-2" aria-label="เปิดเมนู">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="fixed inset-y-0 right-0 w-64 bg-primary text-white shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col z-50">
+            <div class="p-6 flex justify-end">
+                <button id="close-menu-btn" class="text-white hover:text-secondary" aria-label="ปิดเมนู">
+                    <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="flex flex-col px-6 space-y-6">
+                <a href="#home" class="mobile-link text-lg font-medium hover:text-secondary transition-colors border-b border-white/10 pb-2">หน้าแรก</a>
+                <a href="#features" class="mobile-link text-lg font-medium hover:text-secondary transition-colors border-b border-white/10 pb-2">จุดเด่น</a>
+                <a href="#reviews" class="mobile-link text-lg font-medium hover:text-secondary transition-colors border-b border-white/10 pb-2">รีวิว</a>
+                <a href="#contact" class="mobile-link text-lg font-medium hover:text-secondary transition-colors border-b border-white/10 pb-2">ติดต่อเรา</a>
+                <a href="#contact" class="mobile-link bg-accent text-center py-3 rounded-full font-medium mt-4">จองโต๊ะ</a>
+            </div>
+        </div>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-overlay" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity opacity-0"></div>
+    </nav>
+
+    <!-- 2. Hero Section -->
+    <section id="home" class="hero-bg h-screen relative flex items-center justify-center text-white">
+        <div class="text-center px-4 max-w-4xl z-10 fade-in-up">
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-heading mb-6 leading-tight drop-shadow-lg">
+                ปิ้งไป ชิลไป <br class="md:hidden">ในบรรยากาศแคมป์
+            </h1>
+            <p class="text-lg md:text-xl lg:text-2xl mb-10 text-gray-200 drop-shadow-md">
+                คาเฟ่กลางธรรมชาติ ที่ผสมผสานความสนุกของการแคมป์ปิ้ง <br class="hidden md:block">กับอาหารอร่อยและเครื่องดื่มชิลๆ
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="bg-accent hover:bg-orange-600 text-white px-8 py-4 rounded-full font-medium text-lg transition-transform hover:scale-105 shadow-xl">
+                    จองโต๊ะเลย
+                </a>
+                <a href="#features" class="border-2 border-white hover:bg-white hover:text-primary text-white px-8 py-4 rounded-full font-medium text-lg transition-colors">
+                    ดูเมนู
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll down indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce-slow">
+            <a href="#features" aria-label="เลื่อนลง" class="text-white opacity-80 hover:opacity-100 transition-opacity">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- 3. Key Features Section -->
+    <section id="features" class="py-24 bg-background">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-heading text-primary mb-4">ทำไมต้อง 2พฤษภา?</h2>
+                <p class="text-text-secondary text-lg">สัมผัสประสบการณ์ที่ไม่เหมือนใคร</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Feature 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in-up">
+                    <img src="feature1.jpg" alt="พื้นที่พักผ่อนและทำงาน" class="w-full h-56 object-cover" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 224\' fill=\'%23F0EBE1\'%3E%3Crect width=\'100%25\' height=\'100%25\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'20\' fill=\'%236B5B4B\'%3EImage Placeholder%3C/text%3E%3C/svg%3E'">
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-surface text-primary rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-heading text-text-primary mb-3">พื้นที่พักผ่อนและทำงาน</h3>
+                        <p class="text-text-secondary leading-relaxed">
+                            พร้อมบรรยากาศครอบครัวที่อบอุ่นและเป็นกันเอง ไม่ว่าจะมานั่งทำงาน หรือพักผ่อนกับครอบครัว ที่นี่ตอบโจทย์ทุกความต้องการ
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in-up" style="transition-delay: 100ms;">
+                    <img src="feature2.jpg" alt="แคมป์ปิ้งสุดชิล ใกล้ชิดธรรมชาติ" class="w-full h-56 object-cover" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 224\' fill=\'%23F0EBE1\'%3E%3Crect width=\'100%25\' height=\'100%25\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'20\' fill=\'%236B5B4B\'%3EImage Placeholder%3C/text%3E%3C/svg%3E'">
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-surface text-primary rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M12 3l9 18H3l9-18z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11v10" />
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-heading text-text-primary mb-3">แคมป์ปิ้งสุดชิล ใกล้ชิดธรรมชาติ</h3>
+                        <p class="text-text-secondary leading-relaxed">
+                            นั่งกิน นั่งคุย สูดอากาศดีๆ พร้อมวิวและบรรยากาศที่เหมาะกับการพักผ่อน ท่ามกลางธรรมชาติที่สวยงาม
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 fade-in-up" style="transition-delay: 200ms;">
+                    <img src="feature3.jpg" alt="บ่อตกปลา" class="w-full h-56 object-cover" onerror="this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 400 224\' fill=\'%23F0EBE1\'%3E%3Crect width=\'100%25\' height=\'100%25\'/%3E%3Ctext x=\'50%25\' y=\'50%25\' dominant-baseline=\'middle\' text-anchor=\'middle\' font-family=\'sans-serif\' font-size=\'20\' fill=\'%236B5B4B\'%3EImage Placeholder%3C/text%3E%3C/svg%3E'">
+                    <div class="p-8">
+                        <div class="w-12 h-12 bg-surface text-primary rounded-full flex items-center justify-center mb-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 19v-2l-2-2-4 4-2-2"/>
+                                <path d="M13 15l2-2"/>
+                                <path d="M22 6c0 1.6-1.4 3-3 3s-3-1.4-3-3 1.4-3 3-3 3 1.4 3 3z"/>
+                                <path d="M19 6h-3.5"/>
+                                <path d="M15.5 6a3.5 3.5 0 0 0-3.5 3.5v7.5A3.5 3.5 0 0 1 8.5 20.5H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h1.5a3.5 3.5 0 0 0 3.5-3.5V6a3.5 3.5 0 0 1 3.5-3.5H19"/>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-heading text-text-primary mb-3">บ่อตกปลา</h3>
+                        <p class="text-text-secondary leading-relaxed">
+                            กิจกรรมครอบครัวที่สนุกสนาน มาตกปลากันในบ่อส่วนตัว สร้างความทรงจำดีๆ ร่วมกัน
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Social Proof Section -->
+    <section id="reviews" class="py-24 bg-surface">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-20 text-center fade-in-up">
+                <div class="p-6">
+                    <div class="text-4xl md:text-5xl font-heading text-primary mb-2 flex justify-center items-baseline gap-1">
+                        <span class="counter" data-target="500">0</span>+
+                    </div>
+                    <p class="text-text-secondary font-medium">ลูกค้าต่อเดือน</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl md:text-5xl font-heading text-primary mb-2 flex justify-center items-baseline gap-1">
+                        <span class="counter-float" data-target="4.8">0</span> <span class="text-accent text-3xl">⭐</span>
+                    </div>
+                    <p class="text-text-secondary font-medium">คะแนนรีวิว</p>
+                </div>
+                <div class="p-6">
+                    <div class="text-4xl md:text-5xl font-heading text-primary mb-2 flex justify-center items-baseline gap-1">
+                        <span class="counter" data-target="3">0</span> ปี
+                    </div>
+                    <p class="text-text-secondary font-medium">ที่เปิดให้บริการ</p>
+                </div>
+            </div>
+
+            <!-- Testimonials Title -->
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-heading text-primary mb-4">เสียงจากลูกค้าของเรา</h2>
+            </div>
+
+            <!-- Testimonial Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Card 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow fade-in-up">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xl font-bold">
+                            ส
+                        </div>
+                        <div>
+                            <h4 class="font-heading text-text-primary">คุณสมชาย</h4>
+                            <div class="flex text-accent text-sm">
+                                ⭐⭐⭐⭐⭐
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary italic">
+                        "บรรยากาศดีมากครับ เหมือนได้ไปแคมป์จริงๆ อาหารอร่อย ราคาสมเหตุสมผล จะกลับมาอีกแน่นอน"
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow fade-in-up" style="transition-delay: 100ms;">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-pink-100 text-pink-600 rounded-full flex items-center justify-center text-xl font-bold">
+                            ม
+                        </div>
+                        <div>
+                            <h4 class="font-heading text-text-primary">คุณมาลี</h4>
+                            <div class="flex text-accent text-sm">
+                                ⭐⭐⭐⭐⭐
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary italic">
+                        "พาครอบครัวมา ลูกๆ ชอบมาก ได้ตกปลาด้วย บรรยากาศร่มรื่น เหมาะกับการพักผ่อนในวันหยุดสุดๆ"
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm hover:shadow-md transition-shadow fade-in-up" style="transition-delay: 200ms;">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-14 h-14 bg-green-100 text-green-600 rounded-full flex items-center justify-center text-xl font-bold">
+                            ว
+                        </div>
+                        <div>
+                            <h4 class="font-heading text-text-primary">คุณวิชัย</h4>
+                            <div class="flex text-accent text-sm">
+                                ⭐⭐⭐⭐<span class="text-gray-300">⭐</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-text-secondary italic">
+                        "มานั่งทำงานบ่อยครับ WiFi แรง กาแฟอร่อย บรรยากาศเงียบสงบ เหมาะกับการโฟกัสงานมาก"
+                    </p>
+                </div>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="flex flex-wrap justify-center gap-4 md:gap-8 fade-in-up">
+                <div class="flex items-center gap-2 text-primary font-medium bg-white px-4 py-2 rounded-full shadow-sm">
+                    <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    ที่จอดรถกว้างขวาง
+                </div>
+                <div class="flex items-center gap-2 text-primary font-medium bg-white px-4 py-2 rounded-full shadow-sm">
+                    <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    WiFi ฟรี
+                </div>
+                <div class="flex items-center gap-2 text-primary font-medium bg-white px-4 py-2 rounded-full shadow-sm">
+                    <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    เปิดทุกวัน
+                </div>
+                <div class="flex items-center gap-2 text-primary font-medium bg-white px-4 py-2 rounded-full shadow-sm">
+                    <svg class="w-5 h-5 text-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                    เหมาะสำหรับครอบครัว
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Call-to-Action Section -->
+    <section id="contact" class="py-24 bg-primary relative overflow-hidden">
+        <!-- Subtle pattern overlay (using CSS gradients for simplicity) -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 2px, transparent 2px); background-size: 30px 30px;"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-5xl font-heading text-white mb-4">พร้อมมาชิลกับเราหรือยัง?</h2>
+                <p class="text-secondary text-lg md:text-xl">จองโต๊ะล่วงหน้า หรือสอบถามข้อมูลเพิ่มเติม</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Left: Info & Actions -->
+                <div class="fade-in-up">
+                    <div class="flex flex-col sm:flex-row gap-4 mb-10">
+                        <button class="border-2 border-white hover:bg-white hover:text-primary text-white px-6 py-3 rounded-full font-medium transition-colors w-full sm:w-auto text-center">
+                            ดูเมนู
+                        </button>
+                        <button class="border-2 border-white hover:bg-white hover:text-primary text-white px-6 py-3 rounded-full font-medium transition-colors w-full sm:w-auto text-center flex justify-center items-center gap-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            แผนที่ร้าน
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-6 text-white">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-secondary text-sm">โทรศัพท์</p>
+                                <p class="text-xl font-heading">09X-XXX-XXXX</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center shrink-0">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
+                                </svg>
+                            </div>
+                            <div>
+                                <p class="text-secondary text-sm">LINE ID</p>
+                                <p class="text-xl font-heading">@2pruetsapha</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Form -->
+                <div class="bg-white rounded-2xl p-8 shadow-xl fade-in-up" style="transition-delay: 100ms;">
+                    <form id="booking-form" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-text-primary mb-1">ชื่อ-นามสกุล</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="กรุณากรอกชื่อ">
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="phone" class="block text-sm font-medium text-text-primary mb-1">เบอร์โทรศัพท์</label>
+                                <input type="tel" id="phone" name="phone" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="08X-XXX-XXXX">
+                            </div>
+                            <div>
+                                <label for="people" class="block text-sm font-medium text-text-primary mb-1">จำนวนคน</label>
+                                <input type="number" id="people" name="people" min="1" required class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all" placeholder="จำนวนคน">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-text-primary mb-1">ข้อความเพิ่มเติม (ตัวเลือก)</label>
+                            <textarea id="message" name="message" rows="3" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all resize-none" placeholder="วันที่, เวลา หรือความต้องการพิเศษ"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-accent hover:bg-orange-600 text-white py-3 rounded-lg font-medium text-lg transition-colors shadow-md hover:shadow-lg mt-2">
+                            ส่งข้อมูล
+                        </button>
+                        <p class="text-center text-xs text-gray-500 mt-4 flex items-center justify-center gap-1">
+                            <span>🔒</span> ข้อมูลของคุณจะถูกเก็บเป็นความลับ
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Footer -->
+    <footer class="bg-text-primary text-[#F0EBE1] py-12 md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 border-b border-gray-700 pb-12 mb-8">
+                <!-- Col 1 -->
+                <div>
+                    <div class="flex items-center gap-2 mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 21h18M4 21V10l8-7 8 7v11M10 21V14h4v7" />
+                        </svg>
+                        <span class="font-heading text-2xl tracking-tight text-white">2พฤษภา</span>
+                    </div>
+                    <p class="text-gray-400 mb-6 leading-relaxed">
+                        คาเฟ่แคมป์ปิ้งกลางธรรมชาติ พื้นที่พักผ่อนสำหรับครอบครัว พร้อมอาหาร เครื่องดื่ม และบ่อตกปลาส่วนตัว
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-accent transition-colors" aria-label="Facebook">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd" /></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-accent transition-colors" aria-label="Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" /></svg>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-accent transition-colors" aria-label="LINE">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 10.304c0-5.369-5.383-9.738-12-9.738-6.616 0-12 4.369-12 9.738 0 4.814 4.269 8.846 10.036 9.608.391.084.922.258 1.057.592.122.303.079.778.039 1.085l-.171 1.027c-.053.303-.242 1.186 1.039.647 1.281-.54 6.911-4.069 9.428-6.967 1.739-1.907 2.572-3.843 2.572-5.992zm-15.278-1.304c0 .331-.268.599-.599.599h-1.993v1.992c0 .331-.268.599-.599.599s-.599-.268-.599-.599v-3.19c0-.046.009-.09.019-.133.023-.105.074-.202.146-.279.079-.074.175-.125.281-.148.041-.01.087-.019.133-.019h3.191c.331 0 .599.268.599.599zm4.237 3.19c0 .331-.268.599-.599.599s-.599-.268-.599-.599v-3.19c0-.331.268-.599.599-.599s.599.268.599.599v3.19zm3.504 0c0 .331-.268.599-.599.599s-.599-.268-.599-.599v-1.748l-1.921 2.22c-.085.097-.206.152-.334.152-.258 0-.491-.184-.576-.436-.019-.055-.028-.112-.028-.169v-3.19c0-.331.268-.599.599-.599s.599.268.599.599v1.748l1.921-2.22c.085-.097.206-.152.334-.152.258 0 .491.184.576.436.019.055.028.112.028.169v3.19zm5.352-2.591c0 .331-.268.599-.599.599h-1.993v.598h1.993c.331 0 .599.268.599.599s-.268.599-.599.599h-2.592c-.046 0-.09-.009-.133-.019-.105-.023-.202-.074-.279-.146-.074-.079-.125-.175-.148-.281-.01-.041-.019-.087-.019-.133v-3.19c0-.046.009-.09.019-.133.023-.105.074-.202.146-.279.079-.074.175-.125.281-.148.041-.01.087-.019.133-.019h2.592c.331 0 .599.268.599.599s-.268.599-.599.599h-1.993v.598h1.993c.331 0 .599.268.599.599z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2 -->
+                <div>
+                    <h4 class="text-lg font-heading text-white mb-6">ลิงก์ด่วน</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition-colors">หน้าแรก</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white transition-colors">เมนูและจุดเด่น</a></li>
+                        <li><a href="#reviews" class="text-gray-400 hover:text-white transition-colors">รีวิวจากลูกค้า</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">ติดต่อเรา / จองโต๊ะ</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3 -->
+                <div>
+                    <h4 class="text-lg font-heading text-white mb-6">ติดต่อเรา</h4>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3 text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 shrink-0 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <span>123 หมู่ 4 ต.ธรรมชาติ อ.เมือง จ.เชียงใหม่ 50000</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <span>09X-XXX-XXXX</span>
+                        </li>
+                        <li class="flex items-center gap-3 text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 shrink-0 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                            <span>เปิดทุกวัน 09:00 - 21:00 น.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="text-center text-sm text-gray-500">
+                <p>&copy; 2026 2พฤษภา Camping Cafe &mdash; สงวนลิขสิทธิ์</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.remove('bg-transparent', 'py-4');
+                    navbar.classList.add('bg-primary', 'shadow-md', 'py-2');
+                } else {
+                    navbar.classList.add('bg-transparent', 'py-4');
+                    navbar.classList.remove('bg-primary', 'shadow-md', 'py-2');
+                }
+            });
+
+            // Trigger scroll on load to set initial state
+            window.dispatchEvent(new Event('scroll'));
+
+            // 2. Mobile menu toggle
+            const mobileBtn = document.getElementById('mobile-menu-btn');
+            const closeBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('mobile-overlay');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+
+            function toggleMenu() {
+                const isOpen = !mobileMenu.classList.contains('translate-x-full');
+                
+                if (isOpen) {
+                    mobileMenu.classList.add('translate-x-full');
+                    overlay.classList.add('opacity-0');
+                    setTimeout(() => overlay.classList.add('hidden'), 300);
+                    document.body.style.overflow = '';
+                } else {
+                    overlay.classList.remove('hidden');
+                    // Small delay to allow display:block to apply before animating opacity
+                    setTimeout(() => overlay.classList.remove('opacity-0'), 10);
+                    mobileMenu.classList.remove('translate-x-full');
+                    document.body.style.overflow = 'hidden';
+                }
+            }
+
+            mobileBtn.addEventListener('click', toggleMenu);
+            closeBtn.addEventListener('click', toggleMenu);
+            overlay.addEventListener('click', toggleMenu);
+            
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+
+            // 3. Intersection Observer for fade-in animations
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Start counter animation if it has counters
+                        const counters = entry.target.querySelectorAll('.counter, .counter-float');
+                        if (counters.length > 0) {
+                            startCounters(counters);
+                        }
+                        
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                observer.observe(el);
+            });
+
+            // 4. Counter Animation
+            function startCounters(counters) {
+                counters.forEach(counter => {
+                    const target = parseFloat(counter.getAttribute('data-target'));
+                    const isFloat = counter.classList.contains('counter-float');
+                    const duration = 2000; // ms
+                    const stepTime = 20; // ms
+                    const steps = duration / stepTime;
+                    const increment = target / steps;
+                    let current = 0;
+                    
+                    const timer = setInterval(() => {
+                        current += increment;
+                        
+                        if (current >= target) {
+                            counter.innerText = isFloat ? target.toFixed(1) : target;
+                            clearInterval(timer);
+                        } else {
+                            counter.innerText = isFloat ? current.toFixed(1) : Math.floor(current);
+                        }
+                    }, stepTime);
+                });
+            }
+
+            // 5. Form handling (basic validation prevention default)
+            const form = document.getElementById('booking-form');
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const btn = form.querySelector('button[type="submit"]');
+                const originalText = btn.innerText;
+                
+                btn.innerText = 'กำลังส่ง...';
+                btn.disabled = true;
+                
+                // Simulate sending
+                setTimeout(() => {
+                    btn.innerText = 'ส่งข้อมูลสำเร็จ!';
+                    btn.classList.replace('bg-accent', 'bg-green-600');
+                    form.reset();
+                    
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                        btn.classList.replace('bg-green-600', 'bg-accent');
+                        btn.disabled = false;
+                    }, 3000);
+                }, 1500);
+            });
+        });
+    </script>
+</body>
+</html>
