@@ -1,0 +1,1084 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="2พฤษภา Camping Cafe - ปิ้งไป ชิลไป ในบรรยากาศแคมป์ คาเฟ่แคมป์ปิ้งสุดชิล พร้อมพื้นที่พักผ่อน บ่อตกปลา และอาหารอร่อย">
+    <meta name="keywords" content="คาเฟ่, แคมป์ปิ้ง, camping cafe, บ่อตกปลา, ร้านกาแฟ, พักผ่อน, ปิ้งย่าง">
+    <title>2พฤษภา Camping Cafe | ปิ้งไป ชิลไป ในบรรยากาศแคมป์</title>
+
+    <!-- ===== Tailwind CSS CDN ===== -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- ===== Google Fonts: Prompt (Headings) + Sarabun (Body) ===== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@400;500;600;700;800&family=Sarabun:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- ===== Tailwind Config ===== -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#2D5016',
+                        'primary-light': '#3D6B1E',
+                        secondary: '#A8D5BA',
+                        'secondary-light': '#C8E6D0',
+                        accent: '#E87C3E',
+                        'accent-hover': '#D06A2E',
+                        'warm-bg': '#FDF8F3',
+                        'light-bg': '#F0F7F0',
+                        'dark-text': '#1A1A1A',
+                    },
+                    fontFamily: {
+                        heading: ['Prompt', 'sans-serif'],
+                        body: ['Sarabun', 'system-ui', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <!-- ===== Custom Inline Styles (เฉพาะที่จำเป็น) ===== -->
+    <style>
+        /* Smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Hero gradient - โทนเขียวธรรมชาติ */
+        .hero-gradient {
+            background: linear-gradient(135deg, #2D5016 0%, #3D6B1E 35%, #5A8F3C 65%, #A8D5BA 100%);
+        }
+
+        /* Card hover effect - เรียบง่าย */
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(45, 80, 22, 0.12);
+        }
+
+        /* Testimonial card */
+        .testimonial-card {
+            transition: transform 0.3s ease;
+        }
+        .testimonial-card:hover {
+            transform: scale(1.02);
+        }
+
+        /* Experience card */
+        .experience-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .experience-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Fade-in on scroll - เรียบง่าย */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile menu animation */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .mobile-menu.open {
+            max-height: 500px;
+        }
+
+        /* Metric number gradient text */
+        .metric-number {
+            background: linear-gradient(135deg, #2D5016, #5A8F3C);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Map placeholder */
+        .map-placeholder {
+            background: linear-gradient(135deg, #F0F7F0, #C8E6D0);
+        }
+    </style>
+</head>
+
+<body class="font-body text-dark-text bg-white">
+
+    <!-- ============================================= -->
+    <!-- SECTION 1: NAVIGATION - Sticky, Responsive    -->
+    <!-- ============================================= -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-primary/95 backdrop-blur-sm shadow-lg" aria-label="เมนูหลัก">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 md:h-20">
+                <!-- Logo / ชื่อร้าน -->
+                <a href="#hero" class="flex items-center space-x-2 group">
+                    <span class="text-2xl" aria-hidden="true">🏕️</span>
+                    <span class="font-heading font-bold text-white text-lg md:text-xl group-hover:text-secondary transition-colors">
+                        2พฤษภา Camping Cafe
+                    </span>
+                </a>
+
+                <!-- Desktop Menu - Anchor Links -->
+                <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="#features" class="text-white/90 hover:text-secondary font-medium transition-colors">จุดเด่น</a>
+                    <a href="#experience" class="text-white/90 hover:text-secondary font-medium transition-colors">บรรยากาศ</a>
+                    <a href="#reviews" class="text-white/90 hover:text-secondary font-medium transition-colors">รีวิว</a>
+                    <a href="#location" class="text-white/90 hover:text-secondary font-medium transition-colors">สถานที่</a>
+                    <a href="#reservation" class="text-white/90 hover:text-secondary font-medium transition-colors">ติดต่อเรา</a>
+                    <!-- CTA สำหรับจองโต๊ะ -->
+                    <a href="#reservation" class="bg-accent hover:bg-accent-hover text-white font-heading font-semibold px-5 py-2.5 rounded-full transition-all hover:shadow-lg">
+                        จองโต๊ะ
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Button -->
+                <button id="menu-toggle" class="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-secondary rounded-lg p-2" aria-label="เปิดเมนู" aria-expanded="false">
+                    <svg id="menu-icon-open" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                    </svg>
+                    <svg id="menu-icon-close" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="mobile-menu md:hidden">
+                <div class="pb-4 space-y-2">
+                    <a href="#features" class="block text-white/90 hover:text-secondary hover:bg-white/10 px-4 py-3 rounded-lg transition-colors">จุดเด่น</a>
+                    <a href="#experience" class="block text-white/90 hover:text-secondary hover:bg-white/10 px-4 py-3 rounded-lg transition-colors">บรรยากาศ</a>
+                    <a href="#reviews" class="block text-white/90 hover:text-secondary hover:bg-white/10 px-4 py-3 rounded-lg transition-colors">รีวิว</a>
+                    <a href="#location" class="block text-white/90 hover:text-secondary hover:bg-white/10 px-4 py-3 rounded-lg transition-colors">สถานที่</a>
+                    <a href="#reservation" class="block text-white/90 hover:text-secondary hover:bg-white/10 px-4 py-3 rounded-lg transition-colors">ติดต่อเรา</a>
+                    <a href="#reservation" class="block bg-accent hover:bg-accent-hover text-white font-heading font-semibold text-center px-4 py-3 rounded-full mt-2 transition-colors">
+                        จองโต๊ะ
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+
+    <main>
+
+    <!-- ============================================= -->
+    <!-- SECTION 2: HERO SECTION                       -->
+    <!-- สื่อสารให้ชัดเจนภายในไม่กี่วินาที:            -->
+    <!-- - ร้านคืออะไร                                  -->
+    <!-- - มีประสบการณ์แบบไหน                           -->
+    <!-- - ผู้ใช้ควรทำอะไรต่อ                            -->
+    <!-- ============================================= -->
+    <section id="hero" class="hero-gradient min-h-screen flex items-center pt-16 md:pt-20 relative overflow-hidden">
+        <!-- Decorative background elements -->
+        <div class="absolute inset-0 opacity-10" aria-hidden="true">
+            <div class="absolute top-20 left-10 text-8xl md:text-9xl">🌲</div>
+            <div class="absolute top-40 right-10 text-7xl md:text-8xl">⛺</div>
+            <div class="absolute bottom-20 left-1/4 text-6xl md:text-7xl">🔥</div>
+            <div class="absolute bottom-40 right-1/4 text-5xl md:text-6xl">☕</div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20 relative z-10">
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <!-- Hero Content -->
+                <div class="text-center md:text-left order-2 md:order-1">
+                    <span class="inline-block bg-white/20 backdrop-blur-sm text-white font-heading font-medium px-4 py-2 rounded-full text-sm mb-6">
+                        🏕️ Camping Cafe' เปิดให้บริการทุกวัน
+                    </span>
+                    <h1 class="font-heading font-extrabold text-white text-4xl sm:text-5xl lg:text-6xl xl:text-7xl leading-tight mb-6">
+                        2พฤษภา
+                        <span class="block text-secondary">Camping Cafe</span>
+                    </h1>
+                    <p class="font-heading text-white/90 text-xl sm:text-2xl lg:text-3xl font-medium mb-4">
+                        ปิ้งไป ชิลไป ในบรรยากาศแคมป์
+                    </p>
+                    <p class="text-white/70 text-lg mb-8 max-w-lg mx-auto md:mx-0">
+                        สัมผัสประสบการณ์คาเฟ่กลางธรรมชาติ พร้อมเมนูปิ้งย่างสุดพิเศษ ในบรรยากาศแคมป์ปิ้งที่อบอุ่นเป็นกันเอง
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <!-- Primary CTA: จองโต๊ะ -->
+                        <a href="#reservation" class="bg-accent hover:bg-accent-hover text-white font-heading font-bold text-lg px-8 py-4 rounded-full transition-all hover:shadow-xl inline-flex items-center justify-center space-x-2">
+                            <span>จองโต๊ะ</span>
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                        <!-- Secondary CTA: ดูบรรยากาศ -->
+                        <a href="#experience" class="border-2 border-white/50 hover:border-white text-white font-heading font-semibold text-lg px-8 py-4 rounded-full transition-all hover:bg-white/10 inline-flex items-center justify-center">
+                            ดูบรรยากาศ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image Placeholder -->
+                <!-- TODO: เปลี่ยน src เป็นรูปจริงของร้าน 2พฤษภา Camping Cafe -->
+                <div class="order-1 md:order-2 flex justify-center">
+                    <div class="relative">
+                        <div class="w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] rounded-2xl overflow-hidden shadow-2xl border-4 border-white/20">
+                            <img 
+                                src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&h=600&fit=crop" 
+                                alt="บรรยากาศร้าน 2พฤษภา Camping Cafe - แคมป์ปิ้งท่ามกลางธรรมชาติ"
+                                class="w-full h-full object-cover"
+                                loading="eager"
+                            >
+                        </div>
+                        <!-- Decorative badge -->
+                        <div class="absolute -bottom-4 -left-4 bg-white rounded-xl shadow-lg px-4 py-3 flex items-center space-x-2">
+                            <span class="text-2xl">⭐</span>
+                            <div>
+                                <!-- TODO: ใส่คะแนนจริง -->
+                                <p class="font-heading font-bold text-primary text-sm">[คะแนนรีวิว]</p>
+                                <p class="text-xs text-gray-500">จากรีวิวลูกค้า</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wave Divider -->
+        <div class="absolute bottom-0 left-0 right-0" aria-hidden="true">
+            <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full">
+                <path d="M0,80 C360,120 720,40 1080,80 C1260,100 1380,60 1440,80 L1440,120 L0,120 Z" fill="white"/>
+            </svg>
+        </div>
+    </section>
+
+
+    <!-- ============================================= -->
+    <!-- SECTION 3: KEY FEATURES (3 Highlights)        -->
+    <!-- แต่ละ Feature มี Icon, อ่านง่ายบนมือถือ,       -->
+    <!-- ลำดับข้อมูลชัดเจน                              -->
+    <!-- ============================================= -->
+    <section id="features" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16 fade-in">
+                <span class="inline-block bg-secondary/30 text-primary font-heading font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+                    ทำไมต้องมาที่เรา?
+                </span>
+                <h2 class="font-heading font-bold text-primary text-3xl sm:text-4xl lg:text-5xl mb-4">
+                    จุดเด่นของเรา
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    สัมผัสประสบการณ์ที่แตกต่าง กับ 3 สิ่งพิเศษที่รอคุณอยู่ที่ 2พฤษภา Camping Cafe
+                </p>
+            </div>
+
+            <!-- Feature Cards Grid -->
+            <div class="grid md:grid-cols-3 gap-8">
+
+                <!-- Feature 1: พื้นที่พักผ่อนสำหรับทุกคน -->
+                <div class="feature-card bg-light-bg rounded-2xl p-8 text-center border border-secondary/30 fade-in">
+                    <div class="w-20 h-20 bg-secondary/40 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <!-- SVG Icon: Home/Relaxation -->
+                        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-primary text-xl mb-3">
+                        พื้นที่พักผ่อนสำหรับทุกคน
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        พื้นที่นั่งพักผ่อนและทำงาน พร้อมบรรยากาศครอบครัวที่อบอุ่นและเป็นกันเอง
+                    </p>
+                </div>
+
+                <!-- Feature 2: แคมป์ปิ้งสุดชิล ใกล้ชิดธรรมชาติ -->
+                <div class="feature-card bg-light-bg rounded-2xl p-8 text-center border border-secondary/30 fade-in">
+                    <div class="w-20 h-20 bg-secondary/40 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <!-- SVG Icon: Tent/Camping -->
+                        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3L2 20h20L12 3z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v17"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.5 20l3.5-7 3.5 7"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-primary text-xl mb-3">
+                        แคมป์ปิ้งสุดชิล ใกล้ชิดธรรมชาติ
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        นั่งกิน นั่งคุย สูดอากาศดีๆ พร้อมวิวและบรรยากาศที่เหมาะกับการพักผ่อน
+                    </p>
+                </div>
+
+                <!-- Feature 3: บ่อตกปลา -->
+                <div class="feature-card bg-light-bg rounded-2xl p-8 text-center border border-secondary/30 fade-in">
+                    <div class="w-20 h-20 bg-secondary/40 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <!-- SVG Icon: Fishing -->
+                        <svg class="w-10 h-10 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 2v8m0 0l-3-3m3 3l3-3"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 10c0 3 2 5 2 8s-1 4-4 4"/>
+                            <circle cx="8" cy="20" r="2" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <h3 class="font-heading font-bold text-primary text-xl mb-3">
+                        บ่อตกปลา
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        บ่อตกปลาสำหรับกิจกรรมและช่วงเวลาแห่งความสุขของครอบครัว
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================= -->
+    <!-- SECTION 4: EXPERIENCE / MENU PREVIEW          -->
+    <!-- แสดงตัวอย่างประสบการณ์ของร้าน                  -->
+    <!-- ใช้ Placeholder - ออกแบบให้เปลี่ยนเป็นข้อมูลจริง -->
+    <!-- ได้ง่ายในภายหลัง                                -->
+    <!-- ============================================= -->
+    <section id="experience" class="py-16 md:py-24 bg-warm-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16 fade-in">
+                <span class="inline-block bg-secondary/30 text-primary font-heading font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+                    ประสบการณ์ที่รอคุณ
+                </span>
+                <h2 class="font-heading font-bold text-primary text-3xl sm:text-4xl lg:text-5xl mb-4">
+                    บรรยากาศ & เมนูของเรา
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    สิ่งที่คุณจะได้พบเมื่อมาเยือน 2พฤษภา Camping Cafe
+                </p>
+            </div>
+
+            <!-- Experience Grid -->
+            <!-- TODO: เปลี่ยน src เป็นรูปจริงของร้าน -->
+            <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+
+                <!-- เครื่องดื่ม -->
+                <div class="experience-card rounded-2xl overflow-hidden shadow-sm group fade-in">
+                    <div class="relative aspect-square">
+                        <img 
+                            src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=400&fit=crop" 
+                            alt="เครื่องดื่มที่ร้าน 2พฤษภา Camping Cafe"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                        >
+                        <!-- TODO: เปลี่ยนเป็นรูปเครื่องดื่มจริงของร้าน -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4">
+                            <h3 class="font-heading font-bold text-white text-lg">☕ เครื่องดื่ม</h3>
+                            <p class="text-white/80 text-sm">[ใส่รายละเอียดเครื่องดื่ม]</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- อาหาร -->
+                <div class="experience-card rounded-2xl overflow-hidden shadow-sm group fade-in">
+                    <div class="relative aspect-square">
+                        <img 
+                            src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=400&h=400&fit=crop" 
+                            alt="อาหารที่ร้าน 2พฤษภา Camping Cafe"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                        >
+                        <!-- TODO: เปลี่ยนเป็นรูปอาหารจริงของร้าน -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4">
+                            <h3 class="font-heading font-bold text-white text-lg">🍽️ อาหาร</h3>
+                            <p class="text-white/80 text-sm">[ใส่รายละเอียดอาหาร]</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ปิ้งย่าง -->
+                <div class="experience-card rounded-2xl overflow-hidden shadow-sm group fade-in">
+                    <div class="relative aspect-square">
+                        <img 
+                            src="https://images.unsplash.com/photo-1529692236671-f1f6cf9683ba?w=400&h=400&fit=crop" 
+                            alt="ปิ้งย่างที่ร้าน 2พฤษภา Camping Cafe"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                        >
+                        <!-- TODO: เปลี่ยนเป็นรูปปิ้งย่างจริงของร้าน -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4">
+                            <h3 class="font-heading font-bold text-white text-lg">🔥 ปิ้งย่าง</h3>
+                            <p class="text-white/80 text-sm">[ใส่รายละเอียดเมนูปิ้งย่าง]</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- กิจกรรม -->
+                <div class="experience-card rounded-2xl overflow-hidden shadow-sm group fade-in">
+                    <div class="relative aspect-square">
+                        <img 
+                            src="https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?w=400&h=400&fit=crop" 
+                            alt="กิจกรรมที่ร้าน 2พฤษภา Camping Cafe"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                        >
+                        <!-- TODO: เปลี่ยนเป็นรูปกิจกรรมจริงของร้าน -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4">
+                            <h3 class="font-heading font-bold text-white text-lg">🎣 กิจกรรม</h3>
+                            <p class="text-white/80 text-sm">[ใส่รายละเอียดกิจกรรม]</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- บรรยากาศธรรมชาติ - Spanning 2 columns on large -->
+                <div class="experience-card rounded-2xl overflow-hidden shadow-sm group col-span-2 fade-in">
+                    <div class="relative aspect-video lg:aspect-[2/1]">
+                        <img 
+                            src="https://images.unsplash.com/photo-1510312305653-8ed496efae75?w=800&h=400&fit=crop" 
+                            alt="บรรยากาศธรรมชาติที่ร้าน 2พฤษภา Camping Cafe"
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            loading="lazy"
+                        >
+                        <!-- TODO: เปลี่ยนเป็นรูปบรรยากาศจริงของร้าน -->
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                        <div class="absolute bottom-0 left-0 right-0 p-4 md:p-6">
+                            <h3 class="font-heading font-bold text-white text-lg md:text-xl">🌿 บรรยากาศธรรมชาติ</h3>
+                            <p class="text-white/80 text-sm md:text-base">[ใส่รายละเอียดบรรยากาศของร้าน]</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================= -->
+    <!-- SECTION 5: SOCIAL PROOF                       -->
+    <!-- ใช้ Placeholder อย่างชัดเจน                    -->
+    <!-- ไม่ใช้ข้อมูลจริงที่แต่งขึ้น                     -->
+    <!-- ============================================= -->
+    <section id="reviews" class="py-16 md:py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16 fade-in">
+                <span class="inline-block bg-secondary/30 text-primary font-heading font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+                    เสียงจากลูกค้า
+                </span>
+                <h2 class="font-heading font-bold text-primary text-3xl sm:text-4xl lg:text-5xl mb-4">
+                    รีวิวจากลูกค้าของเรา
+                </h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                    เรายินดีรับฟังทุกเสียงจากลูกค้าของเรา
+                </p>
+            </div>
+
+            <!-- Metrics Placeholder -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-12 md:mb-16 fade-in">
+                <div class="bg-light-bg rounded-2xl p-6 text-center">
+                    <!-- TODO: ใส่ตัวเลขจริง -->
+                    <p class="metric-number font-heading font-extrabold text-3xl md:text-4xl mb-1">[XXX]+</p>
+                    <p class="text-gray-500 text-sm font-medium">ลูกค้าที่มาเยี่ยมชม</p>
+                </div>
+                <div class="bg-light-bg rounded-2xl p-6 text-center">
+                    <!-- TODO: ใส่ตัวเลขจริง -->
+                    <p class="metric-number font-heading font-extrabold text-3xl md:text-4xl mb-1">[X.X]</p>
+                    <p class="text-gray-500 text-sm font-medium">⭐ คะแนนรีวิว</p>
+                </div>
+                <div class="bg-light-bg rounded-2xl p-6 text-center">
+                    <!-- TODO: ใส่ตัวเลขจริง -->
+                    <p class="metric-number font-heading font-extrabold text-3xl md:text-4xl mb-1">[XX]+</p>
+                    <p class="text-gray-500 text-sm font-medium">เมนูให้เลือก</p>
+                </div>
+                <div class="bg-light-bg rounded-2xl p-6 text-center">
+                    <!-- TODO: ใส่ตัวเลขจริง -->
+                    <p class="metric-number font-heading font-extrabold text-3xl md:text-4xl mb-1">[X] ปี</p>
+                    <p class="text-gray-500 text-sm font-medium">ที่เปิดบริการ</p>
+                </div>
+            </div>
+
+            <!-- Testimonial Placeholder Cards -->
+            <div class="grid md:grid-cols-3 gap-8 mb-12 md:mb-16">
+
+                <!-- Testimonial Placeholder 1 -->
+                <div class="testimonial-card bg-light-bg rounded-2xl p-8 border border-secondary/20 fade-in">
+                    <div class="flex items-center mb-4">
+                        <span class="text-accent text-lg" aria-label="5 ดาว">★★★★★</span>
+                    </div>
+                    <!-- TODO: ใส่รีวิวจริงจากลูกค้า -->
+                    <p class="text-gray-600 mb-6 leading-relaxed italic">
+                        "[ใส่รีวิวจากลูกค้าจริง]"
+                    </p>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center">
+                            <span class="font-heading font-bold text-primary text-lg">?</span>
+                        </div>
+                        <div>
+                            <!-- TODO: ใส่ชื่อลูกค้าจริง -->
+                            <p class="font-heading font-semibold text-dark-text">[ชื่อลูกค้า]</p>
+                            <p class="text-gray-400 text-sm">[ข้อมูลเพิ่มเติม]</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Placeholder 2 -->
+                <div class="testimonial-card bg-light-bg rounded-2xl p-8 border border-secondary/20 fade-in">
+                    <div class="flex items-center mb-4">
+                        <span class="text-accent text-lg" aria-label="5 ดาว">★★★★★</span>
+                    </div>
+                    <!-- TODO: ใส่รีวิวจริงจากลูกค้า -->
+                    <p class="text-gray-600 mb-6 leading-relaxed italic">
+                        "[ใส่รีวิวจากลูกค้าจริง]"
+                    </p>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center">
+                            <span class="font-heading font-bold text-primary text-lg">?</span>
+                        </div>
+                        <div>
+                            <!-- TODO: ใส่ชื่อลูกค้าจริง -->
+                            <p class="font-heading font-semibold text-dark-text">[ชื่อลูกค้า]</p>
+                            <p class="text-gray-400 text-sm">[ข้อมูลเพิ่มเติม]</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Placeholder 3 -->
+                <div class="testimonial-card bg-light-bg rounded-2xl p-8 border border-secondary/20 fade-in">
+                    <div class="flex items-center mb-4">
+                        <span class="text-accent text-lg" aria-label="5 ดาว">★★★★★</span>
+                    </div>
+                    <!-- TODO: ใส่รีวิวจริงจากลูกค้า -->
+                    <p class="text-gray-600 mb-6 leading-relaxed italic">
+                        "[ใส่รีวิวจากลูกค้าจริง]"
+                    </p>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-secondary rounded-full flex items-center justify-center">
+                            <span class="font-heading font-bold text-primary text-lg">?</span>
+                        </div>
+                        <div>
+                            <!-- TODO: ใส่ชื่อลูกค้าจริง -->
+                            <p class="font-heading font-semibold text-dark-text">[ชื่อลูกค้า]</p>
+                            <p class="text-gray-400 text-sm">[ข้อมูลเพิ่มเติม]</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Trust Badges Placeholder -->
+            <div class="flex flex-wrap justify-center gap-4 md:gap-6 fade-in">
+                <!-- TODO: เปลี่ยนเป็น badge จริงของร้าน -->
+                <div class="bg-light-bg rounded-full px-6 py-3 border border-secondary/20 flex items-center space-x-2">
+                    <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="font-heading font-semibold text-primary text-sm">[Trust Badge 1]</span>
+                </div>
+                <div class="bg-light-bg rounded-full px-6 py-3 border border-secondary/20 flex items-center space-x-2">
+                    <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    <span class="font-heading font-semibold text-primary text-sm">[Trust Badge 2]</span>
+                </div>
+                <div class="bg-light-bg rounded-full px-6 py-3 border border-secondary/20 flex items-center space-x-2">
+                    <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                    </svg>
+                    <span class="font-heading font-semibold text-primary text-sm">[Trust Badge 3]</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================= -->
+    <!-- SECTION 6: LOCATION / CONTACT                 -->
+    <!-- ข้อมูลสถานที่, แผนที่, เวลาเปิด-ปิด,           -->
+    <!-- ช่องทางติดต่อ (โทร, LINE, FB, IG)              -->
+    <!-- ============================================= -->
+    <section id="location" class="py-16 md:py-24 bg-light-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Section Header -->
+            <div class="text-center mb-12 md:mb-16 fade-in">
+                <span class="inline-block bg-secondary/30 text-primary font-heading font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+                    มาหาเราได้ที่
+                </span>
+                <h2 class="font-heading font-bold text-primary text-3xl sm:text-4xl lg:text-5xl mb-4">
+                    สถานที่ & การติดต่อ
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+
+                <!-- Map Placeholder -->
+                <div class="fade-in">
+                    <!-- TODO: แทนที่ด้วย Google Maps embed จริง -->
+                    <div class="map-placeholder rounded-2xl h-72 md:h-96 flex flex-col items-center justify-center border-2 border-dashed border-secondary">
+                        <svg class="w-16 h-16 text-primary/40 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        </svg>
+                        <p class="font-heading font-semibold text-primary/60 text-lg">[Google Maps]</p>
+                        <p class="text-primary/40 text-sm mt-1">แทนที่ด้วย Google Maps embed</p>
+                    </div>
+                </div>
+
+                <!-- Contact Details -->
+                <div class="fade-in space-y-6">
+                    <!-- เวลาเปิด-ปิด -->
+                    <div class="bg-white rounded-2xl p-6 border border-secondary/20">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-10 h-10 bg-secondary/30 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-heading font-bold text-primary text-lg">เวลาเปิดทำการ</h3>
+                        </div>
+                        <!-- TODO: ใส่เวลาเปิด-ปิดจริง -->
+                        <p class="text-gray-600 ml-13 pl-[52px]">[ใส่วันและเวลาเปิดทำการ]</p>
+                    </div>
+
+                    <!-- ที่ตั้ง -->
+                    <div class="bg-white rounded-2xl p-6 border border-secondary/20">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-10 h-10 bg-secondary/30 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-heading font-bold text-primary text-lg">ที่ตั้ง</h3>
+                        </div>
+                        <!-- TODO: ใส่ที่อยู่จริง -->
+                        <p class="text-gray-600 pl-[52px]">[ใส่ที่อยู่ร้าน]</p>
+                    </div>
+
+                    <!-- เบอร์โทรศัพท์ -->
+                    <div class="bg-white rounded-2xl p-6 border border-secondary/20">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-10 h-10 bg-secondary/30 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-heading font-bold text-primary text-lg">โทรศัพท์</h3>
+                        </div>
+                        <!-- TODO: ใส่เบอร์โทรจริง -->
+                        <p class="text-gray-600 pl-[52px]">[ใส่เบอร์โทรศัพท์]</p>
+                    </div>
+
+                    <!-- Social Media Links -->
+                    <div class="bg-white rounded-2xl p-6 border border-secondary/20">
+                        <div class="flex items-center space-x-3 mb-4">
+                            <div class="w-10 h-10 bg-secondary/30 rounded-xl flex items-center justify-center flex-shrink-0">
+                                <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
+                                </svg>
+                            </div>
+                            <h3 class="font-heading font-bold text-primary text-lg">ติดตามเรา</h3>
+                        </div>
+                        <div class="flex space-x-4 pl-[52px]">
+                            <!-- TODO: ใส่ลิงก์จริง -->
+                            <!-- Facebook -->
+                            <a href="#" class="w-11 h-11 bg-primary/10 hover:bg-primary hover:text-white text-primary rounded-xl flex items-center justify-center transition-all" aria-label="Facebook">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                                </svg>
+                            </a>
+                            <!-- Instagram -->
+                            <a href="#" class="w-11 h-11 bg-primary/10 hover:bg-primary hover:text-white text-primary rounded-xl flex items-center justify-center transition-all" aria-label="Instagram">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                                </svg>
+                            </a>
+                            <!-- LINE -->
+                            <a href="#" class="w-11 h-11 bg-primary/10 hover:bg-primary hover:text-white text-primary rounded-xl flex items-center justify-center transition-all" aria-label="LINE">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ============================================= -->
+    <!-- SECTION 7: CALL-TO-ACTION / RESERVATION       -->
+    <!-- Form จองโต๊ะ: ชื่อ, เบอร์โทร, จำนวนคน,        -->
+    <!-- วันที่, เวลา, ข้อความเพิ่มเติม                  -->
+    <!-- Frontend UI เท่านั้น (ไม่มี Backend)            -->
+    <!-- ============================================= -->
+    <section id="reservation" class="py-16 md:py-24 bg-white relative overflow-hidden">
+        <!-- Decorative background -->
+        <div class="absolute top-0 right-0 w-72 h-72 bg-secondary/20 rounded-full -translate-y-1/2 translate-x-1/2" aria-hidden="true"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-secondary/10 rounded-full translate-y-1/2 -translate-x-1/2" aria-hidden="true"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+
+                <!-- CTA Content -->
+                <div class="fade-in">
+                    <span class="inline-block bg-accent/10 text-accent font-heading font-semibold px-4 py-1.5 rounded-full text-sm mb-4">
+                        🏕️ จองโต๊ะ
+                    </span>
+                    <h2 class="font-heading font-bold text-primary text-3xl sm:text-4xl lg:text-5xl mb-6">
+                        มาสร้างความทรงจำดีๆ
+                        <span class="text-accent">ร่วมกัน</span>
+                    </h2>
+                    <p class="text-gray-600 text-lg mb-8 leading-relaxed">
+                        พร้อมให้บริการทุกวัน ไม่ว่าจะมาเป็นครอบครัว กลุ่มเพื่อน หรือคู่รัก เราพร้อมต้อนรับคุณเสมอ
+                    </p>
+                    <!-- Quick highlights -->
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span class="text-gray-600">เหมาะสำหรับครอบครัว กลุ่มเพื่อน และคู่รัก</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span class="text-gray-600">บรรยากาศแคมป์ปิ้ง ท่ามกลางธรรมชาติ</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <svg class="w-5 h-5 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+                            <span class="text-gray-600">เมนูปิ้งย่าง เครื่องดื่ม และกิจกรรมตกปลา</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reservation Form -->
+                <div class="fade-in">
+                    <div class="bg-light-bg rounded-2xl p-6 md:p-8 border border-secondary/30">
+                        <h3 class="font-heading font-bold text-primary text-2xl mb-2">จองโต๊ะ / สอบถามข้อมูล</h3>
+                        <p class="text-gray-500 mb-6 text-sm">กรอกข้อมูลด้านล่าง เราจะติดต่อกลับเพื่อยืนยัน</p>
+
+                        <!-- Form เป็น Frontend UI เท่านั้น ไม่ต้องเชื่อมต่อ Backend -->
+                        <form id="reservation-form" action="#" method="POST" class="space-y-4" novalidate>
+                            <!-- ชื่อ -->
+                            <div>
+                                <label for="res-name" class="block font-heading font-medium text-dark-text text-sm mb-1.5">ชื่อ <span class="text-red-500">*</span></label>
+                                <input 
+                                    type="text" 
+                                    id="res-name" 
+                                    name="name" 
+                                    required
+                                    placeholder="กรุณากรอกชื่อของคุณ"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white text-base"
+                                    aria-required="true"
+                                >
+                            </div>
+
+                            <!-- เบอร์โทรศัพท์ -->
+                            <div>
+                                <label for="res-phone" class="block font-heading font-medium text-dark-text text-sm mb-1.5">เบอร์โทรศัพท์ <span class="text-red-500">*</span></label>
+                                <input 
+                                    type="tel" 
+                                    id="res-phone" 
+                                    name="phone" 
+                                    required
+                                    placeholder="0XX-XXX-XXXX"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white text-base"
+                                    aria-required="true"
+                                >
+                            </div>
+
+                            <!-- จำนวนคน & วันที่ (2 columns) -->
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label for="res-guests" class="block font-heading font-medium text-dark-text text-sm mb-1.5">จำนวนคน <span class="text-red-500">*</span></label>
+                                    <select 
+                                        id="res-guests" 
+                                        name="guests" 
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white text-base appearance-none"
+                                        aria-required="true"
+                                    >
+                                        <option value="">เลือก</option>
+                                        <option value="1-2">1-2 คน</option>
+                                        <option value="3-4">3-4 คน</option>
+                                        <option value="5-6">5-6 คน</option>
+                                        <option value="7-10">7-10 คน</option>
+                                        <option value="10+">มากกว่า 10 คน</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="res-date" class="block font-heading font-medium text-dark-text text-sm mb-1.5">วันที่ <span class="text-red-500">*</span></label>
+                                    <input 
+                                        type="date" 
+                                        id="res-date" 
+                                        name="date" 
+                                        required
+                                        class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white text-base"
+                                        aria-required="true"
+                                    >
+                                </div>
+                            </div>
+
+                            <!-- เวลา -->
+                            <div>
+                                <label for="res-time" class="block font-heading font-medium text-dark-text text-sm mb-1.5">เวลาที่ต้องการ <span class="text-red-500">*</span></label>
+                                <input 
+                                    type="time" 
+                                    id="res-time" 
+                                    name="time" 
+                                    required
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white text-base"
+                                    aria-required="true"
+                                >
+                            </div>
+
+                            <!-- ข้อความเพิ่มเติม -->
+                            <div>
+                                <label for="res-message" class="block font-heading font-medium text-dark-text text-sm mb-1.5">ข้อความเพิ่มเติม</label>
+                                <textarea 
+                                    id="res-message" 
+                                    name="message" 
+                                    rows="3"
+                                    placeholder="เช่น ต้องการโซนพิเศษ, มีเด็กเล็ก, ฉลองวันเกิด ฯลฯ"
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all bg-white resize-none text-base"
+                                ></textarea>
+                            </div>
+
+                            <!-- Submit Button -->
+                            <button 
+                                type="submit" 
+                                class="w-full bg-accent hover:bg-accent-hover text-white font-heading font-bold text-lg py-4 rounded-xl transition-all hover:shadow-lg active:scale-[0.98]"
+                            >
+                                ส่งข้อมูลจองโต๊ะ
+                            </button>
+                        </form>
+
+                        <!-- Privacy Note -->
+                        <p class="text-gray-400 text-xs mt-4 text-center leading-relaxed">
+                            🔒 ข้อมูลของคุณจะถูกเก็บรักษาเป็นความลับ เราจะไม่เปิดเผยข้อมูลส่วนตัวของคุณแก่บุคคลที่สาม
+                            โดยเป็นไปตาม <a href="#" class="text-primary underline hover:text-primary-light">นโยบายความเป็นส่วนตัว</a> ของเรา
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    </main>
+
+    <!-- ============================================= -->
+    <!-- SECTION 8: FOOTER                             -->
+    <!-- Quick Links, Social Icons, Contact Info,       -->
+    <!-- Copyright, Placeholder สำหรับข้อมูลร้าน        -->
+    <!-- ============================================= -->
+    <footer class="bg-primary text-white pt-12 pb-6" role="contentinfo">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+
+                <!-- Brand Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <span class="text-3xl" aria-hidden="true">🏕️</span>
+                        <h3 class="font-heading font-bold text-xl">2พฤษภา Camping Cafe</h3>
+                    </div>
+                    <p class="text-white/70 leading-relaxed text-sm">
+                        คาเฟ่แคมป์ปิ้งสุดชิล ท่ามกลางธรรมชาติ พร้อมเมนูอร่อยๆ และกิจกรรมสนุกๆ สำหรับทุกคนในครอบครัว
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="font-heading font-bold text-lg mb-4">ลิงก์ด่วน</h4>
+                    <nav aria-label="ลิงก์ด่วน">
+                        <ul class="space-y-2">
+                            <li><a href="#hero" class="text-white/70 hover:text-secondary transition-colors text-sm">› หน้าหลัก</a></li>
+                            <li><a href="#features" class="text-white/70 hover:text-secondary transition-colors text-sm">› จุดเด่นของเรา</a></li>
+                            <li><a href="#experience" class="text-white/70 hover:text-secondary transition-colors text-sm">› บรรยากาศ & เมนู</a></li>
+                            <li><a href="#reviews" class="text-white/70 hover:text-secondary transition-colors text-sm">› รีวิวลูกค้า</a></li>
+                            <li><a href="#location" class="text-white/70 hover:text-secondary transition-colors text-sm">› สถานที่</a></li>
+                            <li><a href="#reservation" class="text-white/70 hover:text-secondary transition-colors text-sm">› จองโต๊ะ</a></li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h4 class="font-heading font-bold text-lg mb-4">ข้อมูลร้าน</h4>
+                    <div class="space-y-3 text-sm">
+                        <!-- TODO: ใส่ข้อมูลจริง -->
+                        <p class="text-white/70">📍 [ใส่ที่อยู่ร้าน]</p>
+                        <p class="text-white/70">📞 [ใส่เบอร์โทรศัพท์]</p>
+                        <p class="text-white/70">🕐 [ใส่เวลาเปิดทำการ]</p>
+                        <p class="text-white/70">📧 [ใส่อีเมล (ถ้ามี)]</p>
+                    </div>
+                </div>
+
+                <!-- Social Media -->
+                <div>
+                    <h4 class="font-heading font-bold text-lg mb-4">ติดตามเรา</h4>
+                    <div class="flex space-x-3 mb-4">
+                        <!-- TODO: ใส่ลิงก์จริง -->
+                        <!-- Facebook -->
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-secondary hover:text-primary rounded-xl flex items-center justify-center transition-all" aria-label="Facebook">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <!-- Instagram -->
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-secondary hover:text-primary rounded-xl flex items-center justify-center transition-all" aria-label="Instagram">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                            </svg>
+                        </a>
+                        <!-- LINE -->
+                        <a href="#" class="w-10 h-10 bg-white/10 hover:bg-secondary hover:text-primary rounded-xl flex items-center justify-center transition-all" aria-label="LINE">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                            </svg>
+                        </a>
+                    </div>
+                    <!-- TODO: ใส่ข้อมูลเพิ่มเติม -->
+                    <p class="text-white/50 text-sm">[ข้อมูลเพิ่มเติมของร้าน]</p>
+                </div>
+
+            </div>
+
+            <!-- Divider & Copyright -->
+            <div class="border-t border-white/20 pt-6">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-3 md:space-y-0">
+                    <p class="text-white/50 text-sm text-center md:text-left">
+                        © 2026 2พฤษภา Camping Cafe. All rights reserved.
+                    </p>
+                    <div class="flex space-x-6 text-sm">
+                        <a href="#" class="text-white/50 hover:text-secondary transition-colors">นโยบายความเป็นส่วนตัว</a>
+                        <a href="#" class="text-white/50 hover:text-secondary transition-colors">ข้อกำหนดการใช้งาน</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ============================================= -->
+    <!-- JAVASCRIPT                                     -->
+    <!-- - Mobile Hamburger Menu                        -->
+    <!-- - Navbar scroll effect                         -->
+    <!-- - Scroll fade-in animation (Intersection Observer) -->
+    <!-- - Form handling (Frontend only)                -->
+    <!-- - Smooth scroll                                -->
+    <!-- ============================================= -->
+    <script>
+        // ===== Mobile Menu Toggle =====
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIconOpen = document.getElementById('menu-icon-open');
+        const menuIconClose = document.getElementById('menu-icon-close');
+
+        menuToggle.addEventListener('click', () => {
+            const isOpen = mobileMenu.classList.toggle('open');
+            menuIconOpen.classList.toggle('hidden', isOpen);
+            menuIconClose.classList.toggle('hidden', !isOpen);
+            menuToggle.setAttribute('aria-expanded', isOpen);
+        });
+
+        // ปิดเมนูเมื่อคลิกลิงก์
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                menuIconOpen.classList.remove('hidden');
+                menuIconClose.classList.add('hidden');
+                menuToggle.setAttribute('aria-expanded', 'false');
+            });
+        });
+
+
+        // ===== Navbar Background on Scroll =====
+        const navbar = document.querySelector('nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-xl');
+                navbar.classList.remove('bg-primary/95');
+                navbar.classList.add('bg-primary');
+            } else {
+                navbar.classList.remove('shadow-xl');
+                navbar.classList.add('bg-primary/95');
+                navbar.classList.remove('bg-primary');
+            }
+        });
+
+
+        // ===== Fade-In on Scroll (Intersection Observer) =====
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        fadeElements.forEach(el => observer.observe(el));
+
+
+        // ===== Reservation Form Handling (Frontend UI Only) =====
+        const reservationForm = document.getElementById('reservation-form');
+        reservationForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(reservationForm);
+            const name = formData.get('name');
+            const phone = formData.get('phone');
+            const guests = formData.get('guests');
+            const date = formData.get('date');
+            const time = formData.get('time');
+
+            // Simple validation
+            if (!name || !phone || !guests || !date || !time) {
+                alert('กรุณากรอกข้อมูลที่จำเป็นให้ครบถ้วน');
+                return;
+            }
+
+            // Show success message (Frontend only - ไม่มี Backend)
+            alert(`ขอบคุณครับ/ค่ะ คุณ${name}!\n\nข้อมูลการจอง:\n📅 วันที่: ${date}\n⏰ เวลา: ${time}\n👥 จำนวน: ${guests}\n📞 เบอร์โทร: ${phone}\n\nเราจะติดต่อกลับเพื่อยืนยันการจองโดยเร็วที่สุด 🏕️`);
+            reservationForm.reset();
+        });
+
+        // ตั้งค่า min date ให้เป็นวันนี้
+        const dateInput = document.getElementById('res-date');
+        if (dateInput) {
+            const today = new Date().toISOString().split('T')[0];
+            dateInput.setAttribute('min', today);
+        }
+
+
+        // ===== Smooth Scroll for anchor links =====
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navbarHeight = navbar.offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
